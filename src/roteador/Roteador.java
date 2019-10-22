@@ -36,5 +36,7 @@ public class Roteador {
         receiver.start();
         
     }
+
+    //populaTabelaInicial - pegar todos ips do texto e criar a tabela inicial, c metrica 1 e saida direta
     
 }
