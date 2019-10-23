@@ -3,7 +3,7 @@ package roteador;
 public class IpRoteamento {
 
     private String ipDestino;
-    private String metrica;
+    private int metrica;
     private String ipSaida;
     private String ip;
 
@@ -15,11 +15,11 @@ public class IpRoteamento {
         this.ipDestino = ipDestino;
     }
 
-    public String getMetrica() {
+    public int getMetrica() {
         return metrica;
     }
 
-    public void setMetrica(String metrica) {
+    public void setMetrica(int metrica) {
         this.metrica = metrica;
     }
 
@@ -37,5 +37,10 @@ public class IpRoteamento {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    @Override
+    public String toString() {
+        return  "*" + ipDestino + ';' + metrica;
     }
 }

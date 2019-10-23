@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +37,12 @@ public class Roteador {
         receiver.start();
         
     }
-
     //populaTabelaInicial - pegar todos ips do texto e criar a tabela inicial, c metrica 1 e saida direta
-    
+    public void populaTabelaInicial(List<String> ip_list) {
+        IpRoteamento ipRoteamento = new IpRoteamento();
+        ipRoteamento.setIp(ip_list.get(0));
+        ipRoteamento.setMetrica(1);
+
+
+    }
 }

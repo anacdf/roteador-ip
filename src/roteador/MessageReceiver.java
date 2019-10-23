@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MessageReceiver implements Runnable{
+public class MessageReceiver implements Runnable {
     private TabelaRoteamento tabela;
 
     //usar para ver se os ips da tabela sao ativos
@@ -28,7 +28,6 @@ public class MessageReceiver implements Runnable{
         DatagramSocket serverSocket = null;
         
         try {
-            
             /* Inicializa o servidor para aguardar datagramas na porta 5000 */
             serverSocket = new DatagramSocket(5000);
         } catch (SocketException ex) {
@@ -38,7 +37,7 @@ public class MessageReceiver implements Runnable{
         
         byte[] receiveData = new byte[1024];
         
-        while(true){
+        while(true) {
             
             /* Cria um DatagramPacket */
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
@@ -67,6 +66,8 @@ public class MessageReceiver implements Runnable{
     }
 
     private List<IpRoteamento> parseMensagem(String mensagemRecebida) {
+
+
         return null;
     }
 
