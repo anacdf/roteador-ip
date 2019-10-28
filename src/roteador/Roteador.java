@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,16 +15,16 @@ public class Roteador {
 
     public static void main(String[] args) throws IOException {
         /* Lista de endereço IPs dos vizinhos */
-        ArrayList<String> ip_list = new ArrayList<>();
+        ArrayList<String> ipList = new ArrayList<>();
 
         /* Le arquivo de entrada com lista de IPs dos roteadores vizinhos. */
         try ( BufferedReader inputFile = new BufferedReader(new FileReader("IPVizinhos.txt"))) {
             String ip;
             
             while( (ip = inputFile.readLine()) != null){
-                ip_list.add(ip);
+                ipList.add(ip);
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Roteador.class.getName()).log(Level.SEVERE, null, ex);
             return;
@@ -31,18 +33,9 @@ public class Roteador {
         /* Cria instâncias da tabela de roteamento e das threads de envio e recebimento de mensagens. */
         TabelaRoteamento tabela = new TabelaRoteamento();
         Thread sender = new Thread(new MessageReceiver(tabela));
-        Thread receiver = new Thread(new MessageSender(tabela, ip_list));
-        
+        Thread receiver = new Thread(new MessageSender(tabela, ipList));
+
         sender.start();
         receiver.start();
-        
-    }
-    //populaTabelaInicial - pegar todos ips do texto e criar a tabela inicial, c metrica 1 e saida direta
-    public void populaTabelaInicial(List<String> ip_list) {
-        IpRoteamento ipRoteamento = new IpRoteamento();
-        ipRoteamento.setIp(ip_list.get(0));
-        ipRoteamento.setMetrica(1);
-
-
     }
 }

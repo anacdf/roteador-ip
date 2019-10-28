@@ -6,24 +6,24 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MessageSender implements Runnable{
-    TabelaRoteamento tabela; /*Tabela de roteamento */
-    ArrayList<String> vizinhos; /* Lista de IPs dos roteadores vizinhos */
+    private TabelaRoteamento tabela; /*Tabela de roteamento */
+    private List<String> vizinhos; /* Lista de IPs dos roteadores vizinhos */
     
-    public MessageSender(TabelaRoteamento t, ArrayList<String> v){
+    public MessageSender(TabelaRoteamento t, List<String> v){
         tabela = t;
         vizinhos = v;
     }
     
     @Override
     public void run() {
-        DatagramSocket clientSocket = null;
+        DatagramSocket clientSocket;
         byte[] sendData;
-        InetAddress IPAddress = null;
+        InetAddress ipAddress;
         
         /* Cria socket para envio de mensagem */
         try {
@@ -33,26 +33,25 @@ public class MessageSender implements Runnable{
             return;
         }
         
-        while(true){
-            
+        while (true) {
             /* Pega a tabela de roteamento no formato string, conforme especificado pelo protocolo. */
-            String tabela_string = tabela.get_tabela_string();
-               
+            String tabelaString = tabela.getTabelaString();
+
             /* Converte string para array de bytes para envio pelo socket. */
-            sendData = tabela_string.getBytes();
-            
+            sendData = tabelaString.getBytes();
+
             /* Anuncia a tabela de roteamento para cada um dos vizinhos */
             for (String ip : vizinhos){
                 /* Converte string com o IP do vizinho para formato InetAddress */
                 try {
-                    IPAddress = InetAddress.getByName(ip);
+                    ipAddress = InetAddress.getByName(ip);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }
                 
                 /* Configura pacote para envio da menssagem para o roteador vizinho na porta 5000*/
-                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 5000);         
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipAddress, 5000);
                 
                 /* Realiza envio da mensagem. */
                 try {
@@ -71,9 +70,6 @@ public class MessageSender implements Runnable{
             } catch (InterruptedException ex) {
                 Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-        
     }
-    
 }

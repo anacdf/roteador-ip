@@ -3,7 +3,7 @@
 Desenvolver uma aplicação que simule um roteador de rede e que faça a troca de tabelas de   roteamento,   semelhante   ao   que   foi   apresentado   em   aula,   utilizando   sockets   UDP   para   acomunicação. A aplicação deve implementar o protocolo descrito a seguir. 
 
 
-Inicialmente,   deverá   ser   informado,   na   aplicação,   os   endereços   IPs   dos  roteadores vizinhos  para que várias topologias diferentes possam ser simuladas. Cada roteador vizinho éuma instância do roteador implementado executando em outra máquina física. Esses endereços IPs deverão ser cadastrados em uma tabela de roteamento com métrica 1 e saída direta. Três campos deverão estar presentes na tabela de roteamento: IP de Destino, Métrica e IP de Saída.
+Inicialmente,   deverá   ser   informado,   na   aplicação,   os   endereços   IPs   dos  roteadores vizinhos  para que várias topologias diferentes possam ser simuladas. Cada roteador vizinho é uma instância do roteador implementado executando em outra máquina física. Esses endereços IPs deverão ser cadastrados em uma tabela de roteamento com métrica 1 e saída direta. Três campos deverão estar presentes na tabela de roteamento: IP de Destino, Métrica e IP de Saída.
 
 
 As   tabelas   de   roteamento   (apenas   os   campos   IP   de   Destino   e   Métrica)   deverão   ser trocadas entre os roteadores vizinhos a cada 10 segundos. Ao receber a tabela de roteamento de seus vizinhos, a aplicação deverá verificar as rotas recebidas e fazer as atualizações necessárias na tabela de roteamento local. Uma atualização deverá ser feita sempre que: 
