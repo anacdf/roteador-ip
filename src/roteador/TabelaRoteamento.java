@@ -38,7 +38,7 @@ public class TabelaRoteamento {
             String[] colunasDaLinha = linhaDaMensagem.split(";");
             String ip = colunasDaLinha[0];
 
-            Linha linhaNova = new Linha(IPAddress.toString(), 1, IPAddress.getHostAddress());
+            Linha linhaNova = new Linha(IPAddress.toString().replaceAll("/", ""), 1, IPAddress.getHostAddress());
             linhas.add(linhaNova);
 
             for (Linha linha : this.linhas) {
@@ -48,7 +48,6 @@ public class TabelaRoteamento {
                 }
             }
         }
-
         System.out.println("IP HostAddress " + IPAddress.getHostAddress() + ": " + tabela_s);
     }
     
@@ -58,15 +57,11 @@ public class TabelaRoteamento {
         if (linhas.isEmpty()) {
             return "!"; /* Tabela de roteamento vazia conforme especificado no protocolo */
         }
-
         /* Converta a tabela de rotamento para string, conforme formato definido no protocolo . */
-
         String tabela_string = "";
-
         for (Linha linha : linhas) {
             tabela_string += linha.toString();
         }
-
         return tabela_string;
     }
 }

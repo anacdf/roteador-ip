@@ -34,8 +34,11 @@ public class MessageSender implements Runnable{
         }
         
         while(true){
+            System.out.println("--MSG SENDER --");
+
             /* Pega a tabela de roteamento no formato string, conforme especificado pelo protocolo. */
             String tabela_string = tabela.get_tabela_string();
+            System.out.println("tabela_string sender: " + tabela_string);
                
             /* Converte string para array de bytes para envio pelo socket. */
             sendData = tabela_string.getBytes();
@@ -46,7 +49,8 @@ public class MessageSender implements Runnable{
                 /* Converte string com o IP do vizinho para formato InetAddress */
                 try {
                     IPAddress = InetAddress.getByName(ip);
-                    System.out.println("MsgSender 49 - IPAddress: " + IPAddress);
+                    System.out.println("MsgSender IPAddress: " + IPAddress);
+
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
                     continue;

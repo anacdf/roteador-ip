@@ -23,4 +23,8 @@ public class Linha {
     public String toString() {
         return "*" + ipEntrada + ";" + metrica;
     }
+
+    public String printTabelaCompleta() {
+        return "* IP Entrada: " + ipEntrada + "; métrica: " + metrica + "; IP Saída: " + ipSaida;
+    }
 }
