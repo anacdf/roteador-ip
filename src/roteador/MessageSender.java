@@ -34,7 +34,6 @@ public class MessageSender implements Runnable{
         }
         
         while(true){
-            
             /* Pega a tabela de roteamento no formato string, conforme especificado pelo protocolo. */
             String tabela_string = tabela.get_tabela_string();
                
@@ -43,16 +42,20 @@ public class MessageSender implements Runnable{
             
             /* Anuncia a tabela de roteamento para cada um dos vizinhos */
             for (String ip : vizinhos){
+                System.out.println("IP Vizinho: " + ip);
                 /* Converte string com o IP do vizinho para formato InetAddress */
                 try {
                     IPAddress = InetAddress.getByName(ip);
+                    System.out.println("MsgSender 49 - IPAddress: " + IPAddress);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }
                 
                 /* Configura pacote para envio da menssagem para o roteador vizinho na porta 5000*/
-                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 5000);         
+                DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 5000);
+
+                System.out.println("DatagramPacket address: " + sendPacket.getAddress());
                 
                 /* Realiza envio da mensagem. */
                 try {

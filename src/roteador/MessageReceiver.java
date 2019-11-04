@@ -1,6 +1,7 @@
 package roteador;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -14,27 +15,20 @@ public class MessageReceiver implements Runnable{
     public MessageReceiver(TabelaRoteamento t){
         tabela = t;
     }
-    
     @Override
     public void run() {
-        DatagramSocket serverSocket = null;
-        
+        DatagramSocket serverSocket;
         try {
-            
-            /* Inicializa o servidor para aguardar datagramas na porta 5000 */
-            serverSocket = new DatagramSocket(5000);
+            serverSocket = new DatagramSocket(5000); /* Inicializa o servidor para aguardar datagramas na porta 5000 */
         } catch (SocketException ex) {
             Logger.getLogger(MessageReceiver.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        
         byte[] receiveData = new byte[1024];
-        
+
         while(true){
-            
-            /* Cria um DatagramPacket */
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-            
+            System.out.println("--MSG RECEIVER --");
+            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length); /* Cria um DatagramPacket */
             try {
                 /* Aguarda o recebimento de uma mensagem */
                 serverSocket.receive(receivePacket);
@@ -43,12 +37,19 @@ public class MessageReceiver implements Runnable{
             }
             
             /* Transforma a mensagem em string */
-            String tabela_string = new String( receivePacket.getData());
+            String tabela_string = new String(receivePacket.getData()).trim();
             
             /* Obtem o IP de origem da mensagem */
             InetAddress IPAddress = receivePacket.getAddress();
-            
-            tabela.update_tabela(tabela_string, IPAddress);
+            System.out.println("InetAddress: " + IPAddress);
+
+            try {
+                tabela.update_tabela(tabela_string, IPAddress);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("MsgReciver Tabela atualizada: " + tabela_string);
         }
     }
     

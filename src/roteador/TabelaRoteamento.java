@@ -1,5 +1,6 @@
 package roteador;
 
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
@@ -14,8 +15,15 @@ public class TabelaRoteamento {
         this.linhas = new ArrayList<>();
     }
 
-    public void update_tabela(String tabela_s,  InetAddress IPAddress){
+    public void update_tabela(String tabela_s,  InetAddress IPAddress) throws UnsupportedEncodingException {
+        tabela_s.trim();
+        System.out.println("-- UPDATE TABELA ROTEAMENTO --");
+
+        System.out.println("enderecoIP" + IPAddress);
+
         /* Atualize a tabela de rotamento a partir da string recebida. */
+        System.out.println("Tabela recebida: " + tabela_s);
+        System.out.println("IP recebido: " + IPAddress.toString());
 
         // Extraindo as linhas da tabela, separadas por asteriscos
         String[] linhasDaMensagem = tabela_s.split("\\*");
@@ -30,6 +38,8 @@ public class TabelaRoteamento {
             String[] colunasDaLinha = linhaDaMensagem.split(";");
             String ip = colunasDaLinha[0];
 
+            Linha linhaNova = new Linha(IPAddress.toString(), 1, IPAddress.getHostAddress());
+            linhas.add(linhaNova);
 
             for (Linha linha : this.linhas) {
                 // Incrementa a metrica dos IPs que já existem
@@ -39,10 +49,12 @@ public class TabelaRoteamento {
             }
         }
 
-        System.out.println( IPAddress.getHostAddress() + ": " + tabela_s);
+        System.out.println("IP HostAddress " + IPAddress.getHostAddress() + ": " + tabela_s);
     }
     
     public String get_tabela_string(){
+        System.out.println("-- GET TABELA ROTEAMENTO --");
+
         if (linhas.isEmpty()) {
             return "!"; /* Tabela de roteamento vazia conforme especificado no protocolo */
         }
