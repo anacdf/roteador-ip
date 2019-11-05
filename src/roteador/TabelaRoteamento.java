@@ -5,43 +5,40 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class TabelaRoteamento {
-    /*Implemente uma estrutura de dados para manter a tabela de roteamento. 
-     * A tabela deve possuir: IP Destino, Métrica e IP de Saída.
-    */
-
-    private ArrayList<Linha> linhas;
+      private ArrayList<Linha> linhas;
 
     public TabelaRoteamento(){
         this.linhas = new ArrayList<>();
     }
 
     public void update_tabela(String tabela_s,  InetAddress IPAddress) throws UnsupportedEncodingException {
-        tabela_s.trim();
         System.out.println("-- UPDATE TABELA ROTEAMENTO --");
+        tabela_s.trim();
 
-        System.out.println("enderecoIP" + IPAddress);
-
-        /* Atualize a tabela de rotamento a partir da string recebida. */
         System.out.println("Tabela recebida: " + tabela_s);
         System.out.println("IP recebido: " + IPAddress.toString());
 
-        // Extraindo as linhas da tabela, separadas por asteriscos
-        String[] linhasDaMensagem = tabela_s.split("\\*");
+        String IPrecebido = IPAddress.toString().replaceAll("/", "");
 
+        String[] linhasDaMensagem = tabela_s.split("\\*"); // Extraindo as linhas da tabela, separadas por asteriscos
         for (String linhaDaMensagem : linhasDaMensagem) {
-            // Ignorando o primeiro resultado, porque nao ha nada a esquerda do primeiro asterisco
-            if (linhaDaMensagem.isEmpty()) {
+            if (linhaDaMensagem.isEmpty()) { // Ignorando o primeiro resultado, porque nao ha nada a esquerda do primeiro asterisco
                 continue;
             }
 
-            // Extraindo as colunas da linha, separadas pelo ponto e vírgula
-            String[] colunasDaLinha = linhaDaMensagem.split(";");
+            String[] colunasDaLinha = linhaDaMensagem.split(";"); // Extraindo as colunas da linha, separadas pelo ponto e vírgula
             String ip = colunasDaLinha[0];
+            int metrica = Integer.parseInt(colunasDaLinha[1]);
 
-            Linha linhaNova = new Linha(IPAddress.toString().replaceAll("/", ""), 1, IPAddress.getHostAddress());
+            if (!ip.equals("!")) {
+                Linha linhaExiste = new Linha(ip, metrica, "saída direto");
+                linhas.add(linhaExiste);
+            }
+
+            Linha linhaNova = new Linha(IPrecebido, 1, IPAddress.getHostAddress());
             linhas.add(linhaNova);
 
-            for (Linha linha : this.linhas) {
+            for (Linha linha : linhas) {
                 // Incrementa a metrica dos IPs que já existem
                 if (linha.getIpEntrada() == ip) {
                     linha.incrementaMetrica();

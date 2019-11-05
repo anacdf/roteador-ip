@@ -46,8 +46,13 @@ public class MessageReceiver implements Runnable{
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+            System.out.println("-------------------------------------------------");
             System.out.println("Tabela atualizada: " + tabela_string);
+            System.out.println("-------------------------------------------------");
+            System.out.println("-------------------------------------------------");
             System.out.println("Tabela Completa: " + tabela.getTabelaCompleta());
+            System.out.println("-------------------------------------------------");
+
         }
     }
     
