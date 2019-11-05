@@ -64,4 +64,12 @@ public class TabelaRoteamento {
         }
         return tabela_string;
     }
+
+    public String getTabelaCompleta() {
+        String tabela_string = "";
+        for (Linha linha : linhas) {
+            tabela_string += linha.printTabelaCompleta();
+        }
+        return tabela_string;
+    }
 }

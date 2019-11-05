@@ -34,12 +34,9 @@ public class MessageSender implements Runnable{
         }
         
         while(true){
-            System.out.println("--MSG SENDER --");
-
+            System.out.println("-- MSG SENDER --");
             /* Pega a tabela de roteamento no formato string, conforme especificado pelo protocolo. */
             String tabela_string = tabela.get_tabela_string();
-            System.out.println("tabela_string sender: " + tabela_string);
-               
             /* Converte string para array de bytes para envio pelo socket. */
             sendData = tabela_string.getBytes();
             
@@ -55,11 +52,8 @@ public class MessageSender implements Runnable{
                     Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);
                     continue;
                 }
-                
                 /* Configura pacote para envio da menssagem para o roteador vizinho na porta 5000*/
                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 5000);
-
-                System.out.println("DatagramPacket address: " + sendPacket.getAddress());
                 
                 /* Realiza envio da mensagem. */
                 try {

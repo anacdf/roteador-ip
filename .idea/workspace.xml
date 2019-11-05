@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f666475c-4fe7-4dbc-8d97-624aaf1ec853" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/roteador/Linha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/roteador/Linha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/roteador/roteador/Linha.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/roteador/roteador/Linha.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/roteador/roteador/MessageSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/roteador/roteador/MessageSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/roteador/roteador/Roteador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/roteador/roteador/Roteador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/roteador/roteador/TabelaRoteamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/roteador/roteador/TabelaRoteamento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/roteador/MessageReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/roteador/MessageReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/roteador/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/roteador/MessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/roteador/Roteador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/roteador/Roteador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/roteador/TabelaRoteamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/roteador/TabelaRoteamento.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,28 +20,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="roteador" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roteador/Roteador.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/roteador/MessageSender.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="40" column="73" lean-forward="true" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
+            <state relative-caret-position="195">
+              <caret line="55" column="102" selection-start-line="55" selection-start-column="102" selection-end-line="55" selection-end-column="102" />
             </state>
           </provider>
         </entry>
@@ -44,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roteador/TabelaRoteamento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+            <state relative-caret-position="434">
+              <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -66,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/roteador/MessageReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="29" selection-start-line="29" selection-end-line="30" />
+            <state relative-caret-position="805">
+              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -87,12 +91,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/IPVizinhos.txt" />
-        <option value="$PROJECT_DIR$/src/roteador/MessageReceiver.java" />
-        <option value="$PROJECT_DIR$/src/roteador/MessageSender.java" />
         <option value="$PROJECT_DIR$/src/roteador/Linha.java" />
-        <option value="$PROJECT_DIR$/src/roteador/TabelaRoteamento.java" />
         <option value="$PROJECT_DIR$/src/roteador/Roteador.java" />
+        <option value="$PROJECT_DIR$/../roteador-ip2/src/roteador/MessageReceiver.java" />
+        <option value="$PROJECT_DIR$/IPVizinhos.txt" />
+        <option value="$PROJECT_DIR$/../roteador-ip2/IPVizinhos.txt" />
+        <option value="$PROJECT_DIR$/src/roteador/MessageReceiver.java" />
+        <option value="$PROJECT_DIR$/src/roteador/TabelaRoteamento.java" />
+        <option value="$PROJECT_DIR$/src/roteador/MessageSender.java" />
       </list>
     </option>
   </component>
@@ -108,7 +114,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,13 +137,15 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../roteador-ip2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -152,7 +159,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Roteador">
+    <configuration name="Roteador (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="roteador.Roteador" />
+      <module name="roteador-ip2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="roteador.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Roteador" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="roteador.Roteador" />
       <module name="roteador" />
@@ -169,6 +189,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Roteador" />
+        <item itemvalue="Application.Roteador (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -183,24 +204,33 @@
       <option name="presentableId" value="Default" />
       <updated>1572705135011</updated>
       <workItem from="1572817418613" duration="8605000" />
-      <workItem from="1572909322134" duration="1673000" />
+      <workItem from="1572909322134" duration="2740000" />
     </task>
+    <task id="LOCAL-00001" summary="corrige toString do IP recebido.">
+      <created>1572911098298</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1572911098298</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10278000" />
+    <option name="totallyTimeSpent" value="11345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40086675" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.28805238" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.33802816" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -209,7 +239,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="SonarLint" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.27168575" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.27168575" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -224,32 +254,15 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="corrige toString do IP recebido." />
+    <option name="LAST_COMMIT_MESSAGE" value="corrige toString do IP recebido." />
+  </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/net/InetAddress.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-919">
           <caret line="189" column="6" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IPVizinhos.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roteador/MessageReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="29" selection-start-line="29" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/roteador/MessageSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="40" column="73" lean-forward="true" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -264,17 +277,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/roteador/TabelaRoteamento.java">
+    <entry file="file://$PROJECT_DIR$/../roteador-ip2/src/roteador/MessageReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+        <state relative-caret-position="276">
+          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../roteador-ip2/src/roteador/Roteador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../roteador-ip2/IPVizinhos.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IPVizinhos.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/roteador/Roteador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roteador/TabelaRoteamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roteador/MessageReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/roteador/MessageSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="55" column="102" selection-start-line="55" selection-start-column="102" selection-end-line="55" selection-end-column="102" />
         </state>
       </provider>
     </entry>

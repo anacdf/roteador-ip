@@ -27,7 +27,7 @@ public class MessageReceiver implements Runnable{
         byte[] receiveData = new byte[1024];
 
         while(true){
-            System.out.println("--MSG RECEIVER --");
+            System.out.println("-- MSG RECEIVER --");
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length); /* Cria um DatagramPacket */
             try {
                 /* Aguarda o recebimento de uma mensagem */
@@ -41,15 +41,13 @@ public class MessageReceiver implements Runnable{
             
             /* Obtem o IP de origem da mensagem */
             InetAddress IPAddress = receivePacket.getAddress();
-            System.out.println("InetAddress: " + IPAddress);
-
             try {
                 tabela.update_tabela(tabela_string, IPAddress);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("MsgReciver Tabela atualizada: " + tabela_string);
+            System.out.println("Tabela atualizada: " + tabela_string);
+            System.out.println("Tabela Completa: " + tabela.getTabelaCompleta());
         }
     }
     
