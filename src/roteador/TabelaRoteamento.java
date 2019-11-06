@@ -1,55 +1,54 @@
 package roteador;
 
+import sun.security.x509.IPAddressName;
+
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class TabelaRoteamento {
     /*Implemente uma estrutura de dados para manter a tabela de roteamento. 
      * A tabela deve possuir: IP Destino, Métrica e IP de Saída.
     */
 
-    private ArrayList<Linha> linhas;
+    private ArrayList<Linha> tabela;
 
     public TabelaRoteamento(){
-        this.linhas = new ArrayList<>();
+        this.tabela = new ArrayList<>();
     }
 
-    public void update_tabela(String tabela_s,  InetAddress IPAddress) throws UnsupportedEncodingException {
-        tabela_s.trim();
-        System.out.println("-- UPDATE TABELA ROTEAMENTO --");
+    public void update_tabela(String tabelaRecebida,  InetAddress IPAddress) throws UnsupportedEncodingException {
+        ArrayList<Linha> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);
 
-        System.out.println("enderecoIP" + IPAddress);
+        selecionaRotasNovas(tabelaNova);
+    }
 
-        /* Atualize a tabela de rotamento a partir da string recebida. */
-        System.out.println("Tabela recebida: " + tabela_s);
-        System.out.println("IP recebido: " + IPAddress.toString());
+    private ArrayList<String> selecionaRotasNovas(ArrayList<Linha> tabelaNova) {
+        HashSet<String> rotasNovas = new HashSet<>();
 
-        // Extraindo as linhas da tabela, separadas por asteriscos
-        String[] linhasDaMensagem = tabela_s.split("\\*");
-
-        for (String linhaDaMensagem : linhasDaMensagem) {
-            // Ignorando o primeiro resultado, porque nao ha nada a esquerda do primeiro asterisco
-            if (linhaDaMensagem.isEmpty()) {
-                continue;
-            }
-
-            // Extraindo as colunas da linha, separadas pelo ponto e vírgula
-            String[] colunasDaLinha = linhaDaMensagem.split(";");
-            String ip = colunasDaLinha[0];
-
-            Linha linhaNova = new Linha(IPAddress.toString().replaceAll("/", ""), 1, IPAddress.getHostAddress());
-            linhas.add(linhaNova);
-
-            for (Linha linha : this.linhas) {
-                // Incrementa a metrica dos IPs que já existem
-                if (linha.getIpEntrada() == ip) {
-                    linha.incrementaMetrica();
-                }
-            }
+        for (int i = 0; i < tabelaNova.size(); i++) {
+           rotasNovas.add(tabelaNova.get(i).getIpEntrada());
         }
-        System.out.println("IP HostAddress " + IPAddress.getHostAddress() + ": " + tabela_s);
+
+        return
     }
+
+    private ArrayList<Linha> interpretaTabela(String tabelaString, InetAddress ipSaida){
+        String[] linhas = tabelaString.split("\\*");
+        ArrayList<Linha> tabelaNova = new ArrayList<>();
+
+        for (String linha: linhas) {
+            String[] colunas = linha.split(";");
+            String ipDestino = colunas[0];
+            int metrica = Integer.parseInt(colunas[1]);
+
+            tabelaNova.add(new Linha(ipDestino, metrica, ipSaida.getHostAddress()));
+        }
+
+        return tabelaNova;
+    }
+
     
     public String get_tabela_string(){
         System.out.println("-- GET TABELA ROTEAMENTO --");
