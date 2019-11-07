@@ -1,12 +1,12 @@
 package roteador;
 
-public class Linha {
+public class Rota {
 
     private String ipEntrada;
     private int metrica;
     private String ipSaida;
 
-    public Linha (String ipEntrada, int metrica, String ipSaida) {
+    public Rota(String ipEntrada, int metrica, String ipSaida) {
         this.ipEntrada = ipEntrada;
         this.metrica = metrica;
         this.ipSaida = ipSaida;
@@ -16,8 +16,16 @@ public class Linha {
         return this.ipEntrada;
     }
 
-    public void incrementaMetrica() {
-        this.metrica += 1;
+    public int getMetrica() {
+        return this.metrica;
+    }
+
+    public String getIpSaida() {
+        return this.ipSaida;
+    }
+
+    public void setMetrica(int metrica) {
+        this.metrica = metrica;
     }
 
     public String toString() {

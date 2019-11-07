@@ -1,74 +1,122 @@
 package roteador;
 
-import sun.security.x509.IPAddressName;
-
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TabelaRoteamento {
     /*Implemente uma estrutura de dados para manter a tabela de roteamento. 
      * A tabela deve possuir: IP Destino, Métrica e IP de Saída.
     */
 
-    private ArrayList<Linha> tabela;
+    private ArrayList<Rota> tabelaAtual;
 
     public TabelaRoteamento(){
-        this.tabela = new ArrayList<>();
+        tabelaAtual = new ArrayList<>();
     }
 
     public void update_tabela(String tabelaRecebida,  InetAddress IPAddress) throws UnsupportedEncodingException {
-        ArrayList<Linha> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);
+        if (tabelaRecebida.equals("!")) return;
 
-        selecionaRotasNovas(tabelaNova);
+        ArrayList<Rota> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);
+
+        selecionaRotasComNovosIPsDeEntrada(tabelaNova)
+                .forEach(rotaNova -> tabelaAtual.add(rotaNova));
+
+        selecionaRotasComIPdeSaidaIgualAoIPAddress(tabelaNova)
+                .forEach(rotaNova -> {
+                    encontraRotaAtual(rotaNova.getIpEntrada())
+                            .ifPresent(rotaAtual -> rotaAtual.setMetrica(rotaNova.getMetrica()));
+                });
+
+        atualizaRotasComMetricaNovaMenor(tabelaNova);
     }
 
-    private ArrayList<String> selecionaRotasNovas(ArrayList<Linha> tabelaNova) {
-        HashSet<String> rotasNovas = new HashSet<>();
-
-        for (int i = 0; i < tabelaNova.size(); i++) {
-           rotasNovas.add(tabelaNova.get(i).getIpEntrada());
-        }
-
-        return
-    }
-
-    private ArrayList<Linha> interpretaTabela(String tabelaString, InetAddress ipSaida){
+    private ArrayList<Rota> interpretaTabela(String tabelaString, InetAddress ipSaida){
         String[] linhas = tabelaString.split("\\*");
-        ArrayList<Linha> tabelaNova = new ArrayList<>();
+        ArrayList<Rota> tabelaNova = new ArrayList<>();
 
-        for (String linha: linhas) {
+        for (String linha : linhas) {
+            if (linha.isEmpty()) continue; // Ignora a primeira linha que é vazia por causa do split
+
             String[] colunas = linha.split(";");
             String ipDestino = colunas[0];
             int metrica = Integer.parseInt(colunas[1]);
 
-            tabelaNova.add(new Linha(ipDestino, metrica, ipSaida.getHostAddress()));
+            tabelaNova.add(new Rota(ipDestino, metrica, ipSaida.getHostAddress()));
         }
 
         return tabelaNova;
     }
 
-    
+    private ArrayList<Rota> selecionaRotasComNovosIPsDeEntrada(ArrayList<Rota> tabelaNova) {
+        ArrayList<String> listaDeIPsDeEntradaAtuais = selecionaIPsDeEntradaAtuais();
+
+        return (ArrayList<Rota>) tabelaNova.stream()
+                .filter(rota -> listaDeIPsDeEntradaAtuais.contains(rota.getIpEntrada()))
+                .collect(Collectors.toList());
+    }
+
+    private ArrayList<Rota> selecionaRotasComIPdeSaidaIgualAoIPAddress(ArrayList<Rota> tabelaNova) {
+        ArrayList<String> listaDeIPsDeSaidaAtuais = selecionaIPsDeSaidaAtuais();
+
+        return (ArrayList<Rota>) tabelaNova.stream()
+                .filter(rotaNova -> listaDeIPsDeSaidaAtuais.contains(rotaNova.getIpSaida()))
+                .collect(Collectors.toList());
+    }
+
+    private Optional<Rota> encontraRotaAtual(String ipEntrada) {
+        return tabelaAtual.stream()
+                .filter(rota -> rota.getIpEntrada().equals(ipEntrada))
+                .findFirst();
+    }
+
+    public ArrayList<String> selecionaIPsDeEntradaAtuais() {
+        return (ArrayList<String>) tabelaAtual.stream()
+                .map(Rota::getIpEntrada)
+                .collect(Collectors.toList());
+    }
+
+    private ArrayList<String> selecionaIPsDeSaidaAtuais() {
+        return (ArrayList<String>) tabelaAtual.stream()
+                .map(Rota::getIpSaida)
+                .collect(Collectors.toList());
+    }
+
     public String get_tabela_string(){
         System.out.println("-- GET TABELA ROTEAMENTO --");
 
-        if (linhas.isEmpty()) {
+        if (tabelaAtual.isEmpty()) {
             return "!"; /* Tabela de roteamento vazia conforme especificado no protocolo */
         }
         /* Converta a tabela de rotamento para string, conforme formato definido no protocolo . */
         String tabela_string = "";
-        for (Linha linha : linhas) {
-            tabela_string += linha.toString();
+        for (Rota rota : tabelaAtual) {
+            tabela_string += rota.toString();
         }
         return tabela_string;
     }
 
     public String getTabelaCompleta() {
         String tabela_string = "";
-        for (Linha linha : linhas) {
-            tabela_string += linha.printTabelaCompleta();
+        for (Rota rota : tabelaAtual) {
+            tabela_string += rota.printTabelaCompleta();
         }
         return tabela_string;
+    }
+
+    private void atualizaRotasComMetricaNovaMenor(ArrayList<Rota> tabelaNova) {
+        tabelaNova.forEach(rotaNova -> {
+            encontraRotaAtual(rotaNova.getIpEntrada())
+                    .ifPresent(rotaAtual -> {
+                        int metricaNova = rotaNova.getMetrica();
+
+                        if (metricaNova < rotaAtual.getMetrica()) {
+                            rotaAtual.setMetrica(metricaNova);
+                        }
+                    });
+        });
     }
 }

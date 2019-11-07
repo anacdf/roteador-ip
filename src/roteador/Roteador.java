@@ -12,7 +12,6 @@ public class Roteador {
 
     public static void main(String[] args) throws IOException {
 
-        String mensagem = "*ip1;metrica1*ip2;metrica2";
 
         /* Lista de endereço IPs dos vizinhos */
         ArrayList<String> ip_list = new ArrayList<>();
