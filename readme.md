@@ -40,10 +40,10 @@ A   mensagem   consiste   em   uma   lista   de endereços IP’s em formato str
 | 192.168.1.2 | 1       | 192.168.1.1 |
 | 192.168.1.3 | 1       | 192.168.1.1 |
 
-A mensagem enviada será: *192.168.1.2;1*192.168.1.3;1 
+A mensagem enviada será: `*192.168.1.2;1*192.168.1.3;1`
 
 
-Ou seja, * (asterisco) indica uma tupla, IP de Destino e Métrica. A métrica é separadado IP por um “;” (ponto e vírgula).
+Ou seja, `*` (asterisco) indica uma tupla, IP de Destino e Métrica. A métrica é separadado IP por um `;` (ponto e vírgula).
 
 
 O protocolo não prevê confirmação de recebimento de mensagem, pois a tabela deverá ser reenviada a cada 10 segundos. Contudo, caso o recebimento de uma mensagem de anúncio derotas cause a alteração da tabela de roteamento, o roteador deve enviar sua tabela imediatamente para seus vizinhos.
@@ -53,7 +53,7 @@ O protocolo não prevê confirmação de recebimento de mensagem, pois a tabela 
 
 Esta mensagem deverá ser enviada aos vizinhos a cada 10 segundos somente se a tabelade roteamento estiver vazia. Assim, logo que um roteador entrar na rede e não tiver nenhuma rota pré-configurada, deverá anunciar-se para os vizinhos. A mensagem enviada será:
 
-!
+`!`
 
 
 Ou seja, apenas um ponto de exclamação para anunciar sua entrada. 
@@ -78,11 +78,15 @@ As mensagens de anúncio de rotas devem ser enviadas para a porta 5000 do rotead
 ## Regras Gerais
 
 Grupos: Até 3 componentes 
+
 Data de entrega:  08/11
+
 Obs.: Todos participantes devem estar presentes.
+
 Entrega final: 
 - Código fonte comentado.
 - Descrição do formato do pacote utilizado (token, dados, confirmação).
+
 Visualização dos Resultados:
 - A  demonstração  deverá acontecer,  no  mínimo,  em 4 máquinas.  Os  grupos  serão convidados acolocar seus roteadores em uma topologia definida pelo professor e que envolverá diversos grupos. 
 
