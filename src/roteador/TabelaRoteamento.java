@@ -18,7 +18,10 @@ public class TabelaRoteamento {
     }
 
     public void update_tabela(String tabelaRecebida,  InetAddress IPAddress) throws UnsupportedEncodingException {
-        if (tabelaRecebida.equals("!")) return;
+        if (tabelaRecebida.equals("!")) {
+            tabelaAtual.add(new Rota(IPAddress.getHostAddress(), 1, IPAddress.getHostAddress()));
+            return;
+        }
 
         ArrayList<Rota> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);
 
@@ -35,8 +38,9 @@ public class TabelaRoteamento {
     }
 
     private ArrayList<Rota> interpretaTabela(String tabelaString, InetAddress ipSaida){
-        String[] linhas = tabelaString.split("\\*");
         ArrayList<Rota> tabelaNova = new ArrayList<>();
+
+        String[] linhas = tabelaString.split("\\*");
 
         for (String linha : linhas) {
             if (linha.isEmpty()) continue; // Ignora a primeira linha que é vazia por causa do split
