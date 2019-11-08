@@ -46,7 +46,6 @@ public class MessageSender implements Runnable{
                 /* Converte string com o IP do vizinho para formato InetAddress */
                 try {
                     IPAddress = InetAddress.getByName(ip);
-                    System.out.println("MsgSender IPAddress: " + IPAddress);
 
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(MessageSender.class.getName()).log(Level.SEVERE, null, ex);

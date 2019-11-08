@@ -18,8 +18,10 @@ public class TabelaRoteamento {
     }
 
     public void update_tabela(String tabelaRecebida,  InetAddress IPAddress) throws UnsupportedEncodingException {
+        tabelaRecebida.trim();
         if (tabelaRecebida.equals("!")) {
-            tabelaAtual.add(new Rota(IPAddress.getHostAddress(), 1, IPAddress.getHostAddress()));
+            String IPrecebido = IPAddress.toString().replaceAll("/", "");
+            tabelaAtual.add(new Rota(IPrecebido, 1, IPAddress.getHostAddress()));
             return;
         }
 
@@ -59,7 +61,7 @@ public class TabelaRoteamento {
         ArrayList<String> listaDeIPsDeEntradaAtuais = selecionaIPsDeEntradaAtuais();
 
         return (ArrayList<Rota>) tabelaNova.stream()
-                .filter(rota -> listaDeIPsDeEntradaAtuais.contains(rota.getIpEntrada()))
+                .filter(rota -> !listaDeIPsDeEntradaAtuais.contains(rota.getIpEntrada()))
                 .collect(Collectors.toList());
     }
 
