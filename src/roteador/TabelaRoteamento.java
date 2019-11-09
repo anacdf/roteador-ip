@@ -19,27 +19,28 @@ public class TabelaRoteamento {
 
     public void update_tabela(String tabelaRecebida,  InetAddress IPAddress) throws UnsupportedEncodingException {
         tabelaRecebida.trim();
-        if (tabelaRecebida.equals("!")) {
+        if (tabelaRecebida.equals("!")) { //verifica se a tabela é vazia e inclui um novo Ip, com os valores recebidos.
             String IPrecebido = IPAddress.toString().replaceAll("/", "");
             tabelaAtual.add(new Rota(IPrecebido, 1, IPAddress.getHostAddress()));
             return;
         }
 
-        ArrayList<Rota> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);
+        ArrayList<Rota> tabelaNova = interpretaTabela(tabelaRecebida, IPAddress);  //lista com IPs e métricas recebidas
 
         selecionaRotasComNovosIPsDeEntrada(tabelaNova)
-                .forEach(rotaNova -> tabelaAtual.add(rotaNova));
+                .forEach(rotaNova -> tabelaAtual.add(rotaNova)); //inclui Ips novos na Tabela
 
-        selecionaRotasComIPdeSaidaIgualAoIPAddress(tabelaNova)
+        selecionaRotasComIPdeSaidaIgualAoIPAddress(tabelaNova) //adiciona na tabela se IP de entrada não está na tabela e coloca a metrica
                 .forEach(rotaNova -> {
                     encontraRotaAtual(rotaNova.getIpEntrada())
                             .ifPresent(rotaAtual -> rotaAtual.setMetrica(rotaNova.getMetrica()));
                 });
 
-        atualizaRotasComMetricaNovaMenor(tabelaNova);
+        atualizaRotasComMetricaNovaMenor(tabelaNova); //atualiza a métrica
     }
 
     private ArrayList<Rota> interpretaTabela(String tabelaString, InetAddress ipSaida){
+        //faz a quebra da string para ter IPs e métricas separadas em uma lista
         ArrayList<Rota> tabelaNova = new ArrayList<>();
 
         String[] linhas = tabelaString.split("\\*");
@@ -58,6 +59,7 @@ public class TabelaRoteamento {
     }
 
     private ArrayList<Rota> selecionaRotasComNovosIPsDeEntrada(ArrayList<Rota> tabelaNova) {
+        //verifica se os IPs recebidos não estão na tabela e retorna eles.
         ArrayList<String> listaDeIPsDeEntradaAtuais = selecionaIPsDeEntradaAtuais();
 
         return (ArrayList<Rota>) tabelaNova.stream()
@@ -66,6 +68,7 @@ public class TabelaRoteamento {
     }
 
     private ArrayList<Rota> selecionaRotasComIPdeSaidaIgualAoIPAddress(ArrayList<Rota> tabelaNova) {
+        //verifica os IPs da tabela que são do mesmo IP vizinho
         ArrayList<String> listaDeIPsDeSaidaAtuais = selecionaIPsDeSaidaAtuais();
 
         return (ArrayList<Rota>) tabelaNova.stream()
@@ -74,6 +77,7 @@ public class TabelaRoteamento {
     }
 
     private Optional<Rota> encontraRotaAtual(String ipEntrada) {
+        //ve se o IP de entrada é igual ao IP recebido.
         return tabelaAtual.stream()
                 .filter(rota -> rota.getIpEntrada().equals(ipEntrada))
                 .findFirst();
@@ -106,6 +110,7 @@ public class TabelaRoteamento {
     }
 
     public String getTabelaCompleta() {
+        //Mostra a tabela com IP de saída
         String tabela_string = "";
         for (Rota rota : tabelaAtual) {
             tabela_string += rota.printTabelaCompleta();
@@ -114,6 +119,7 @@ public class TabelaRoteamento {
     }
 
     private void atualizaRotasComMetricaNovaMenor(ArrayList<Rota> tabelaNova) {
+        //verifica se a rota nova tem métrica menor que a nossa tabela atual tinha armazenado e caso sim, atualiza ela
         tabelaNova.forEach(rotaNova -> {
             encontraRotaAtual(rotaNova.getIpEntrada())
                     .ifPresent(rotaAtual -> {
